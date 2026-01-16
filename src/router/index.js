@@ -8,26 +8,8 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      meta: { title: 'Home', middleware: [] },
+      meta: { title: 'Inicio', middleware: [] },
       component: Home,
-    },
-    {
-      path: '/login',
-      name: 'login',
-      meta: { title: 'Login', middleware: ['guest'] },
-      component: () => import('../views/auth/Login.vue'),
-    },
-    {
-      path: '/register',
-      name: 'register',
-      meta: { title: 'Register', middleware: ['guest'] },
-      component: () => import('../views/auth/Register.vue'),
-    },
-    {
-      path: '/forgot-password',
-      name: 'forgot-password',
-      meta: { title: 'Forgot Password', middleware: ['guest'] },
-      component: () => import('../views/auth/ForgotPassword.vue'),
     },
     {
       path: '/dashboard',
@@ -36,38 +18,70 @@ const router = createRouter({
       component: () => import('../views/Dashboard.vue'),
     },
     {
-      path: '/verify-email',
-      name: 'verify-email',
-      meta: { title: 'Email Verify', middleware: ['auth'] },
-      component: () => import('../views/auth/VerifyEmail.vue'),
-    },
-    {
-      path: '/password-reset/:token',
-      name: 'password-reset',
-      meta: { title: 'Password Reset', middleware: ['auth'] },
-      component: () => import('../views/auth/PasswordReset.vue'),
+      path: '/auth',
+      name: 'auth',
+      meta: { title: 'Auth', middleware: ['guest'] },
+      children: [
+        {
+          path: 'login',
+          alias: '/intranet',
+          name: 'login',
+          meta: { title: 'Inicia sesión', middleware: ['guest'] },
+          component: () => import('../views/auth/Login.vue'),
+        },
+        {
+          path: 'register',
+          name: 'register',
+          meta: { title: 'Registro', middleware: ['guest'] },
+          component: () => import('../views/auth/Register.vue'),
+        },
+        {
+          path: 'forgot-password',
+          name: 'forgot-password',
+          meta: { title: 'Recupera contraseña', middleware: ['guest'] },
+          component: () => import('../views/auth/ForgotPassword.vue'),
+        },
+        {
+          path: 'password-reset/:token',
+          name: 'password-reset',
+          meta: { title: 'Contraseña nueva', middleware: ['guest'] },
+          component: () => import('../views/auth/PasswordReset.vue'),
+        },
+        {
+          path: 'verify-email',
+          name: 'verify-email',
+          meta: { title: 'Verifica email', middleware: ['auth'] },
+          component: () => import('../views/auth/VerifyEmail.vue'),
+        },
+      ],
     },
   ],
 })
 
-router.beforeEach(async (to, from, next) => {
-  document.title = to.meta.title + ' :: ' + import.meta.env.VITE_APP_NAME
+// router.beforeEach(async (to, from, next) => {
+//   const auth = useAuthStore()
 
-  const auth = useAuthStore()
+//   // 1️⃣ RUTAS PÚBLICAS → no hacemos NADA
+//   if (!to.meta.middleware || to.meta.middleware.length === 0) {
+//     return next()
+//   }
 
-  if (!auth.isLoggedIn) {
-    await auth.fetchUser()
-  }
+//   // 2️⃣ RUTAS AUTH → comprobamos sesión
+//   if (to.meta.middleware.includes('auth')) {
+//     try {
+//       await auth.fetchUser()
+//     } catch {
+//       return next({ name: 'login' })
+//     }
+//   }
 
-  if (to.meta.middleware.includes('guest') && auth.isLoggedIn) next({ name: 'dashboard' })
-  else if (
-    to.meta.middleware.includes('verified') &&
-    auth.isLoggedIn &&
-    !auth.user.email_verified_at
-  )
-    next({ name: 'verify-email' })
-  else if (to.meta.middleware.includes('auth') && !auth.isLoggedIn) next({ name: 'login' })
-  else next()
-})
+//   // 3️⃣ RUTAS GUEST → si está logueado, fuera
+//   if (to.meta.middleware.includes('guest') && auth.user) {
+//     return next({ name: 'dashboard' })
+//   }
+
+//   next()
+// })
+
 
 export default router

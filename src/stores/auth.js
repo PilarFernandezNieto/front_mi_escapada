@@ -8,11 +8,10 @@ export const useAuthStore = defineStore('auth', () => {
   const isLoggedIn = computed(() => !!user.value)
 
   const router = useRouter()
-
   const fetchUser = async () => {
     try {
       const { data } = await axios.get('/api/user')
-
+  
       user.value = data
     } catch (error) {
       if (error.response.status === 409) {
@@ -36,6 +35,7 @@ export const useAuthStore = defineStore('auth', () => {
 
       router.push({ name: 'dashboard' })
     } catch (error) {
+      console.log(error)
       if (error.response.status === 422) {
         errors.value = error.response.data.errors
       }
