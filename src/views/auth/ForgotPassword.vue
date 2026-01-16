@@ -21,15 +21,16 @@ const handleForgotPassword = async () =>
 
 <template>
   <GuestLayout>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-      Forgot your password? No problem. Just let us know your email address and we will email you a
-      password reset link that will allow you to choose a new one.
+   <h1 class="font-titulares text-base text-center p-4 uppercase font-medium">Recuperar contraseña</h1>
+    <div class="mb-4 text-sm text-gray-600">
+      ¿Olvidaste tu contraseña? No hay problema. Índícanos tu dirección de correo electrónico y te
+      enviaremos un enlace para restablecerla y poder elegir una nueva.
     </div>
 
-    <div v-if="status" class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
+    <div v-if="status" class="mb-4 font-medium text-sm text-sky-600">
       {{ status }}
     </div>
-
+    
     <form @submit.prevent="handleForgotPassword()">
       <div>
         <InputLabel for="email" value="Email" />
@@ -39,7 +40,6 @@ const handleForgotPassword = async () =>
           type="email"
           class="mt-1 block w-full"
           v-model="email"
-          required
           autofocus
           autocomplete="username"
         />
@@ -48,11 +48,13 @@ const handleForgotPassword = async () =>
       </div>
 
       <div class="flex items-center justify-end mt-4">
-        <PrimaryButton :class="{ 'opacity-25': processing }" :disabled="processing">
-          Email Password Reset Link
+        <PrimaryButton class="w-full" :class="{ 'opacity-25': processing }" :disabled="processing">
+          Reestablecer contraseña
         </PrimaryButton>
       </div>
     </form>
+    <RouterLink :to="{ name: 'home' }" class="mt-4 flex justify-center hover:text-sky-800"
+    >Volver</RouterLink>
   </GuestLayout>
 </template>
 

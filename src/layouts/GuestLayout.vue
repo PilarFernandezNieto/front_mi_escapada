@@ -4,11 +4,11 @@ import ApplicationLogo from '../components/ApplicationLogo.vue'
 
 <template>
   <div
-    class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900"
+    class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-sky-50 dark:bg-gray-900"
   >
     <div>
       <router-link to="/">
-        <ApplicationLogo class="w-20 h-20 fill-current text-gray-500" />
+        <ApplicationLogo class="w-40 h-40 fill-current" />
       </router-link>
     </div>
 

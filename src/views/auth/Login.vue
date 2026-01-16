@@ -36,10 +36,10 @@ const handleLogin = async () => await login(processing, errors, form.value)
 
 <template>
   <GuestLayout>
-    <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
+<div v-if="status" class="mb-4 font-medium text-sm text-sky-600">
       {{ status }}
     </div>
-
+    <h1 class="font-titulares text-base text-center p-4 uppercase font-medium">Inicia sesión</h1>
     <form @submit.prevent="handleLogin()">
       <div>
         <InputLabel for="email" value="Email" />
@@ -49,7 +49,6 @@ const handleLogin = async () => await login(processing, errors, form.value)
           type="email"
           class="mt-1 block w-full"
           v-model="form.email"
-          required
           autofocus
           autocomplete="username"
         />
@@ -58,14 +57,13 @@ const handleLogin = async () => await login(processing, errors, form.value)
       </div>
 
       <div class="mt-4">
-        <InputLabel for="password" value="Password" />
+        <InputLabel for="password" value="Contraseña" />
 
         <TextInput
           id="password"
           type="password"
           class="mt-1 block w-full"
           v-model="form.password"
-          required
           autocomplete="current-password"
         />
 
@@ -75,23 +73,30 @@ const handleLogin = async () => await login(processing, errors, form.value)
       <div class="block mt-4">
         <label class="flex items-center">
           <Checkbox name="remember" v-model:checked="form.remember" />
-          <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">Remember me</span>
+          <span class="ml-2 text-sm text-gray-600">Recordarme</span>
         </label>
       </div>
 
-      <div class="flex items-center justify-end mt-4">
+      <div class="flex flex-col md:flex-row md:justify-between items-center my-4">
         <RouterLink
           :to="{ name: 'forgot-password' }"
-          class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+          class="underline text-sm text-gray-600 hover:text-sky-800 rounded-md focus:outline-none"
         >
-          Forgot your password?
+          ¿Has olvidado tu contraseña?
         </RouterLink>
-
-        <PrimaryButton class="ml-4" :class="{ 'opacity-25': processing }" :disabled="processing">
-          Log in
-        </PrimaryButton>
+        <RouterLink
+          :to="{ name: 'register' }"
+          class="underline text-sm text-gray-600 hover:text-sky-800 rounded-md focus:outline-none"
+        >
+          ¿Todavía no tienes cuenta?
+        </RouterLink>
       </div>
+
+      <PrimaryButton class="w-full" :class="{ 'opacity-25': processing }" :disabled="processing">
+        Inicia sesión
+      </PrimaryButton>
     </form>
+    <RouterLink :to="{name: 'home'}" class="mt-4 flex justify-center hover:text-sky-800">Volver</RouterLink>
   </GuestLayout>
 </template>
 
