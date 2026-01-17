@@ -58,30 +58,28 @@ const router = createRouter({
   ],
 })
 
-// router.beforeEach(async (to, from, next) => {
-//   const auth = useAuthStore()
+router.beforeEach(async (to, from, next) => {
+  document.title = import.meta.env.VITE_APP_NAME + ' | ' + to.meta.title
 
-//   // 1️⃣ RUTAS PÚBLICAS → no hacemos NADA
-//   if (!to.meta.middleware || to.meta.middleware.length === 0) {
-//     return next()
-//   }
+  const auth = useAuthStore()
 
-//   // 2️⃣ RUTAS AUTH → comprobamos sesión
-//   if (to.meta.middleware.includes('auth')) {
-//     try {
-//       await auth.fetchUser()
-//     } catch {
-//       return next({ name: 'login' })
-//     }
-//   }
+  if (!auth.isLoggedIn) {
+    await auth.fetchUser()
+  }
 
-//   // 3️⃣ RUTAS GUEST → si está logueado, fuera
-//   if (to.meta.middleware.includes('guest') && auth.user) {
-//     return next({ name: 'dashboard' })
-//   }
+  if (to.meta.middleware.includes('guest') && auth.isLoggedIn) next({ name: 'dashboard' })
+  else if (
+    to.meta.middleware.includes('verified') &&
+    auth.isLoggedIn &&
+    !auth.user.email_verified_at
+  )
+    next({ name: 'verify-email' })
+  else if (to.meta.middleware.includes('auth') && !auth.isLoggedIn) next({ name: 'login' })
+  else if (to.meta.middleware.includes('is_admin') && !auth.isAdmin) next({ name: 'home' })
+  else next()
+})
 
-//   next()
-// })
 
 
 export default router
+
