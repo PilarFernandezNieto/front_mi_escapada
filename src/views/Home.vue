@@ -1,7 +1,7 @@
 <template>
 <GuestLayout>
 
-
+<h1>EStamos en home</h1>
 </GuestLayout>
 </template>
 
