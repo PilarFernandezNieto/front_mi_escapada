@@ -43,7 +43,7 @@ export const useAuthStore = defineStore('auth', () => {
 
       await axios.post('/login', formData)
 
-      await fetchUser()
+       await fetchUser()
 
       router.push({ name: 'dashboard' })
     } catch (error) {
