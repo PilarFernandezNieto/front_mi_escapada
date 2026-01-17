@@ -1,5 +1,5 @@
 <script setup>
-import GuestLayout from '../../layouts/GuestLayout.vue'
+import AuthLayout from '../../layouts/AuthLayout.vue'
 import Checkbox from '../../components/Checkbox.vue'
 import InputError from '../../components/InputError.vue'
 import InputLabel from '../../components/InputLabel.vue'
@@ -35,7 +35,7 @@ const handleLogin = async () => await login(processing, errors, form.value)
 </script>
 
 <template>
-  <GuestLayout>
+  <AuthLayout>
 <div v-if="status" class="mb-4 font-medium text-sm text-sky-600">
       {{ status }}
     </div>
@@ -97,7 +97,7 @@ const handleLogin = async () => await login(processing, errors, form.value)
       </PrimaryButton>
     </form>
     <RouterLink :to="{name: 'home'}" class="mt-4 flex justify-center hover:text-sky-800">Volver</RouterLink>
-  </GuestLayout>
+  </AuthLayout>
 </template>
 
 <style scoped></style>

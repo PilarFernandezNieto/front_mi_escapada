@@ -1,13 +1,14 @@
 <template>
-  <div class="flex justify-between w-96 mx-auto mt-10">
-    <RouterLink :to="{name: 'login'}">Login</RouterLink>
-    <RouterLink :to="{name: 'register'}">Registro</RouterLink>
+<GuestLayout>
 
-  </div>
+
+</GuestLayout>
 </template>
 
 <script setup>
   import { RouterLink } from 'vue-router';
+  import GuestLayout from '../layouts/GuestLayout.vue';
+  import ApplicationLogo from '../components/ApplicationLogo.vue';
 
 </script>
 

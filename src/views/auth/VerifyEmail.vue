@@ -1,5 +1,5 @@
 <script setup>
-import GuestLayout from '../../layouts/GuestLayout.vue'
+import AuthLayout from '../../layouts/AuthLayout.vue'
 import PrimaryButton from '../../components/PrimaryButton.vue'
 import { useAuthStore } from '../../stores/auth'
 import { ref } from 'vue'
@@ -20,7 +20,7 @@ const handleResendEmailVerification = async () => await resendEmailVerification(
 </script>
 
 <template>
-  <GuestLayout>
+  <AuthLayout>
     <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
       Thanks for signing up! Before getting started, could you verify your email address by clicking
       on the link we just emailed to you? If you didn't receive the email, we will gladly send you
@@ -48,7 +48,7 @@ const handleResendEmailVerification = async () => await resendEmailVerification(
         </button>
       </div>
     </form>
-  </GuestLayout>
+  </AuthLayout>
 </template>
 
 <style scoped></style>

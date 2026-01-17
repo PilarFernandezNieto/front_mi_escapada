@@ -1,5 +1,5 @@
 <script setup>
-import GuestLayout from '../../layouts/GuestLayout.vue'
+import AuthLayout from '../../layouts/AuthLayout.vue'
 import InputError from '../../components/InputError.vue'
 import InputLabel from '../../components/InputLabel.vue'
 import PrimaryButton from '../../components/PrimaryButton.vue'
@@ -23,7 +23,7 @@ const handleRegister = async () => await register(processing, errors, form.value
 </script>
 
 <template>
-  <GuestLayout>
+  <AuthLayout>
 <h1 class="font-titulares text-base text-center p-4 uppercase font-medium">Registro</h1>
     <form @submit.prevent="handleRegister()">
       <div>
@@ -98,7 +98,7 @@ const handleRegister = async () => await register(processing, errors, form.value
     <RouterLink :to="{ name: 'home' }" class="mt-4 flex justify-center hover:text-sky-800"
       >Volver</RouterLink
     >
-  </GuestLayout>
+  </AuthLayout>
 </template>
 
 <style scoped></style>

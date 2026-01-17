@@ -1,5 +1,5 @@
 <script setup>
-import GuestLayout from '../../layouts/GuestLayout.vue'
+import AuthLayout from '../../layouts/AuthLayout.vue'
 import InputError from '../../components/InputError.vue'
 import InputLabel from '../../components/InputLabel.vue'
 import PrimaryButton from '../../components/PrimaryButton.vue'
@@ -32,7 +32,7 @@ const handleResetPassword = async () => await resetPassword(processing, errors, 
 </script>
 
 <template>
-  <GuestLayout>
+  <AuthLayout>
     <form @submit.prevent="handleResetPassword()">
       <div>
         <InputLabel for="email" value="Email" />
@@ -85,7 +85,7 @@ const handleResetPassword = async () => await resetPassword(processing, errors, 
         </PrimaryButton>
       </div>
     </form>
-  </GuestLayout>
+  </AuthLayout>
 </template>
 
 <style scoped></style>
