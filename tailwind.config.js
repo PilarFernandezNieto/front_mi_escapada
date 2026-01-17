@@ -9,6 +9,9 @@ module.exports = {
     'node_modules/flowbite/**/*.{js,jsx,ts,tsx}',
   ],
   darkMode: 'media',
+  future: {
+    logical: false,
+  },
   theme: {
     extend: {
       fontFamily: {
