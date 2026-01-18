@@ -17,8 +17,8 @@ onMounted(() => {
   <div class="min-h-screen bg-sky-50 dark:bg-gray-900">
 
 
-    <nav class="bg-white fixed w-full z-20 top-0 start-0 border-b border-gray-200">
-      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <nav class="bg-white w-full z-20 top-0 start-0 border-b border-gray-200">
+      <div class="max-w-screen-xl flex flex-col lg:flex-row flex-wrap items-center justify-center md:justify-between mx-auto p-4">
         <RouterLink :to="{ name: 'home' }" class="flex items-center space-x-3 rtl:space-x-reverse">
           <ApplicationLogo class="h-20" />
           <span
@@ -36,7 +36,7 @@ onMounted(() => {
             </button>
             <!-- Dropdown menu -->
             <div
-              class="z-50 hidden bg-white border border-gray-200 rounded-lg shadow-lg w-44 dark:bg-gray-700 dark:border-gray-600"
+              class="z-50 hidden  bg-white border border-gray-200 rounded-lg shadow-lg w-44 dark:bg-gray-700 dark:border-gray-600"
               id="user-dropdown">
               <div class="px-4 py-3 text-sm border-b border-gray-200 dark:border-gray-600">
                 <span class="block text-gray-900 font-medium dark:text-white">Joseph McFall</span>
@@ -68,7 +68,7 @@ onMounted(() => {
             </NavLink>
           </template>
           <button data-collapse-toggle="navbar-user" type="button"
-            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
             aria-controls="navbar-user" aria-expanded="false">
             <span class="sr-only">Open main menu</span>
             <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -77,7 +77,7 @@ onMounted(() => {
             </svg>
           </button>
         </div>
-        <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
+        <div class="items-center justify-between hidden w-full lg:flex md:w-auto md:order-1" id="navbar-user">
           <ul
             class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
             <li>
