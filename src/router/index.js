@@ -12,6 +12,12 @@ const router = createRouter({
       component: Home,
     },
     {
+      path: '/jornadas',
+      name: 'jornadas',
+      meta: { title: 'Jornadas', middleware: [] },
+      component: () => import('../views/Jornadas.vue'),
+    },
+    {
       path: '/dashboard',
       name: 'dashboard',
       meta: { title: 'Dashboard', middleware: ['auth', 'verified'] },

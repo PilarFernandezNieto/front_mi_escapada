@@ -1,17 +1,12 @@
 <template>
-  <GuestLayout>
-
-    <main>
-
-      <h1>Desde Home</h1>
-
-    </main>
-  </GuestLayout>
+    <GuestLayout>
+        <ListadoJornadas />
+    </GuestLayout>
 </template>
 
 <script setup>
 
-
+import ListadoJornadas from '../components/UI/ListadoJornadas.vue';
 import GuestLayout from '../layouts/GuestLayout.vue';
 
 
